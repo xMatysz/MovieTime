@@ -1,40 +1,45 @@
-﻿using MovieTime.Services;
+﻿using MovieTime.Model;
+using System.Collections.ObjectModel;
+using MovieTime.Services;
+using System.Diagnostics;
+using CommunityToolkit.Mvvm.Input;
 
 namespace MovieTime.ViewModel
 {
     public partial class MoviesViewModel : BaseViewModel
     {
-        MovieService _movieService;
-        public ObservableCollection<Movie> Movies { get; set; } = new();
+        private MovieService movieService;
+        public ObservableCollection<Movie> Movies { get; } = new();
+
         public MoviesViewModel(MovieService movieService)
         {
-            Title = "MovieTime";
-            _movieService = movieService;
-        } 
+            Tittle = "Movie finder";
+            this.movieService = movieService;
+        }
 
         [RelayCommand]
-        async Task GetMoviesAsync()
+        private async Task GetMovieAsync()
         {
-            if (IsBusy) return;
-
+            if (IsBusy)
+                return;
             try
             {
                 IsBusy = true;
-                var movies = await _movieService.GetMovies();
+                var movieList = await movieService.GetMovies();
 
                 if (Movies.Count != 0)
                     Movies.Clear();
 
-                foreach (var movie in movies)
+                foreach (var movie in movieList)
                 {
                     Movies.Add(movie);
                 }
             }
             catch (Exception ex)
             {
-
                 Debug.WriteLine(ex);
-                await Shell.Current.DisplayAlert("Error", $"Unable to get movies: {ex.Message}", "OK");
+                await Shell.Current.DisplayAlert("Error!", $"Unable to get Movies{ex.Message}", "Ok");
+                throw;
             }
             finally
             {

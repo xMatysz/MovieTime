@@ -1,19 +1,26 @@
-﻿namespace MovieTime.ViewModel
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MovieTime.ViewModel
 {
     public partial class BaseViewModel : ObservableObject
     {
         public BaseViewModel()
         {
-            
         }
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(IsNotBusy))]
-        bool _isBusy;
+        [NotifyPropertyChangedFor(nameof(isNotBusy))]
+        private bool isBusy;
 
         [ObservableProperty]
-        string _title;
+        private string tittle;
 
-        public bool IsNotBusy => !IsBusy;
+        private bool isNotBusy => !isBusy;
     }
 }
