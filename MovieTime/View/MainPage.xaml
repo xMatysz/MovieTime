@@ -8,14 +8,17 @@
         <CollectionView.ItemsSource>
             <x:Array Type="{x:Type model:Movie}">
                 <model:Movie
-                    Name="Harry Potter"
-                    Genre="Family, Fantasy, Spooky"
-                    Time="2:30"
-                    Image="https://fwcdn.pl/fpo/05/71/30571/7529392.3.jpg" />
+                    Tittle="Harry Potter and the Deathly Hallows: Part 2"
+                    Year="2011"
+                    Poster="https://m.media-amazon.com/images/M/MV5BMGVmMWNiMDktYjQ0Mi00MWIxLTk0N2UtN2ZlYTdkN2IzNDNlXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg" />
                 <model:Movie
-                    Name="James Bond"
-                    Genre="Action"
-                    Image="https://fwcdn.pl/cpo/00/07/7/4_3.3.jpg" />
+                    Tittle="Harry Potter and the Sorcerer's Stone"
+                    Year="2001"
+                    Poster="https://m.media-amazon.com/images/M/MV5BMzkyZGFlOWQtZjFlMi00N2YwLWE2OWQtYTgxY2NkNmM1NjMwXkEyXkFqcGdeQXVyNjY1NTM1MzA@._V1_SX300.jpg" />
+                <model:Movie
+                    Tittle="Harry Potter and the Chamber of Secrets"
+                    Year="2002"
+                    Poster="https://m.media-amazon.com/images/M/MV5BMjE0YjUzNDUtMjc5OS00MTU3LTgxMmUtODhkOThkMzdjNWI4XkEyXkFqcGdeQXVyMTA3MzQ4MTc0._V1_SX300.jpg" />
             </x:Array>
         </CollectionView.ItemsSource>
 
@@ -24,15 +27,14 @@
 
                 <HorizontalStackLayout Padding="10">
 
-                    <Image Source="{Binding Image}"
+                    <Image Source="{Binding Poster}"
                             HeightRequest="100"
                             WidthRequest="100"
                             Aspect="AspectFill" />
 
                     <VerticalStackLayout Padding="10" Spacing="10" VerticalOptions="Center">
-                        <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold" TextColor="White" />
-                        <Label Text="{Binding Genre}" FontSize="Subtitle" />
-                        <Label Text="{Binding Time}" TextColor="Red" />
+                        <Label Text="{Binding Tittle}" FontSize="20" FontAttributes="Bold" TextColor="White" />
+                        <Label Text="{Binding Year}" FontSize="Subtitle" TextColor="GreenYellow"/>
                     </VerticalStackLayout>
                 </HorizontalStackLayout>
             </DataTemplate>
