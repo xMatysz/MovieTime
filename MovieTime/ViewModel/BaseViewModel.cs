@@ -1,34 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MovieTime.ViewModel
+﻿namespace MovieTime.ViewModel
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public partial class BaseViewModel : ObservableObject
     {
-        private bool _isBusy;
-
-        public bool IsBusy
+        public BaseViewModel()
         {
-            get => _isBusy;
-            set
-            {
-                if (_isBusy == value)
-                    return;
-
-                _isBusy = value;
-                OnPropertyChanged(nameof(IsBusy));
-            }
+            
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsNotBusy))]
+        bool _isBusy;
 
-        public void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+        [ObservableProperty]
+        string _title;
+
+        public bool IsNotBusy => !IsBusy;
     }
 }
